@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      padding: 30px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    fieldset {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+      width: auto;
+      margin-right: 5px;
+    }
+
+    .inline {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    .buttons {
+      text-align: center;
+    }
+
+    input[type="submit"], input[type="reset"] {
+      width: 120px;
+      padding: 10px;
+      font-weight: bold;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background-color: #2c80b4;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>User Registration Form</h1>
+
+  <form action="#" method="post" enctype="multipart/form-data">
+
+    <!-- Personal Information -->
+    <fieldset>
+      <legend>Personal Information</legend>
+
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="e.g. 9876543210" required>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+    </fieldset>
+
+    <!-- Account Info -->
+    <fieldset>
+      <legend>Account Information</legend>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        pattern="(?=.*[!@#$%^&*])(?=.*[A-Za-z0-9]).{8,}" 
+        title="Must be at least 8 characters and contain a special character"
+        required>
+      <span class="note">Must be at least 8 characters and contain at least one special character (e.g. @, #, $)</span>
+    </fieldset>
+
+    <!-- Preferences -->
+    <fieldset>
+      <legend>Preferences</legend>
+
+      <label>Gender:</label>
+      <label class="inline"><input type="radio" name="gender" value="male" required> Male</label>
+      <label class="inline"><input type="radio" name="gender" value="female"> Female</label>
+      <label class="inline"><input type="radio" name="gender" value="other"> Other</label>
+
+      <label>Hobbies:</label>
+      <label class="inline"><input type="checkbox" name="hobbies[]" value="reading"> Reading</label>
+      <label class="inline"><input type="checkbox" name="hobbies[]" value="sports"> Sports</label>
+      <label class="inline"><input type="checkbox" name="hobbies[]" value="travel"> Travel</label>
+      <label class="inline"><input type="checkbox" name="hobbies[]" value="music"> Music</label>
+
+      <label for="country">Country:</label>
+      <select id="country" name="country" required>
+        <option value="" disabled selected>--Select Country--</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="canada">Canada</option>
+        <option value="australia">Australia</option>
+        <option value="uk">United Kingdom</option>
+      </select>
+
+      <label for="photo">Upload Profile Photo:</label>
+      <input type="file" id="photo" name="photo" accept="image/*">
+    </fieldset>
+
+    <!-- Comments -->
+    <fieldset>
+      <legend>Additional Comments</legend>
+      <label for="comments">Your Message:</label>
+      <textarea id="comments" name="comments" rows="5" placeholder="Write any message here..."></textarea>
+    </fieldset>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <input type="submit" value="Submit">
+      <input type="reset" value="Reset">
+    </div>
+
+  </form>
+
+</body>
+</html>
