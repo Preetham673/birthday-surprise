@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHA1 and other hash functions online generator</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CryptoJS for MD5 support -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+  <style>
+    .highlight {
+      background-color: #ffff99;
+      padding: 0 0.2em;
+      border-radius: 2px;
+      font-weight: bold;
+    }
+
+    .result-hash {
+      background-color: #d8f5a2;
+      padding: 0.25em 0.5em;
+      border-radius: 3px;
+      font-family: monospace;
+      user-select: all;
+    }
+  </style>
+</head>
+<body class="bg-white text-black font-sans min-h-screen p-4">
+
+  <!-- Navigation -->
+  <nav class="mb-6 text-sm">
+    <a href="#" class="text-blue-700 font-semibold underline mr-2">Home Page</a>|
+    <a href="#" class="text-blue-700 font-semibold underline mx-2">SHA1 in JAVA</a>|
+    <a href="#" class="text-blue-700 font-semibold underline mx-2">Secure password generator</a>|
+    <a href="#" class="text-blue-700 font-semibold underline mx-2">Linux</a>|
+    <a href="#" class="text-blue-700 font-semibold underline ml-2">Privacy Policy</a>
+  </nav>
+
+  <!-- Title -->
+  <h1 class="text-2xl font-bold mb-6">
+    SHA1 and other hash functions online generator
+  </h1>
+
+  <!-- Hash Input Form -->
+  <form id="hashForm" class="flex items-center mb-6" onsubmit="event.preventDefault(); generateHash();">
+    <input 
+      type="text" 
+      id="plaintext" 
+      placeholder="Enter text here"
+      aria-label="Enter text to hash"
+      class="bg-yellow-50 border border-gray-400 rounded-l px-3 py-1 flex-grow mr-1 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+    />
+    <button 
+      type="submit" 
+      class="bg-yellow-200 border border-yellow-400 px-4 py-1 rounded-r font-semibold hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+    >
+      hash
+    </button>
+  </form>
+
+  <!-- Algorithm Selector -->
+  <div class="mb-6 flex justify-center">
+    <select 
+      id="hashAlgorithm" 
+      class="border border-gray-400 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+    >
+      <option value="sha-1">sha-1</option>
+      <option value="md5">md5</option>
+      <option value="sha-256">sha-256</option>
+      <option value="sha-384">sha-384</option>
+      <option value="sha-512">sha-512</option>
+    </select>
+  </div>
+
+  <!-- Result Display -->
+  <div aria-live="polite" aria-atomic="true" role="region" class="mb-10">
+    <p class="font-bold text-lg">
+      Result for <span id="algoName" class="highlight">sha-1</span>: 
+      <span id="hashResult" class="result-hash">...</span>
+    </p>
+  </div>
+
+  <!-- Wikipedia Links -->
+  <div class="text-center text-lg font-semibold mb-16">
+    <a 
+      href="https://en.wikipedia.org/wiki/SHA-1" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="text-blue-700 underline mr-4"
+    >
+      SHA-1
+    </a>
+    <a 
+      href="https://en.wikipedia.org/wiki/MD5" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="text-blue-700 underline"
+    >
+      MD5
+    </a> 
+    on Wikipedia
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center font-bold text-xl">
+    <a href="#" class="text-blue-700 underline mr-4">We love INDIA</a>
+    and
+    <a 
+      href="https://oldpics.org" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="text-blue-700 underline ml-4"
+    >
+      oldpics.org
+    </a>
+  </footer>
+
+  <!-- Hashing Script -->
+  <script>
+    const supportedAlgos = {
+      "sha-1": "SHA-1",
+      "sha-256": "SHA-256",
+      "sha-384": "SHA-384",
+      "sha-512": "SHA-512"
+    };
+
+    function md5(input) {
+      return CryptoJS.MD5(input).toString();
+    }
+
+    async function generateHash() {
+      const text = document.getElementById('plaintext').value;
+      const algo = document.getElementById('hashAlgorithm').value;
+      const resultEl = document.getElementById('hashResult');
+      const algoNameEl = document.getElementById('algoName');
+
+      if (!text) {
+        resultEl.textContent = "Please enter text to hash.";
+        return;
+      }
+
+      algoNameEl.textContent = algo;
+
+      try {
+        if (algo === 'md5') {
+          resultEl.textContent = md5(text);
+          return;
+        }
+
+        const encoder = new TextEncoder();
+        const data = encoder.encode(text);
+        const hashBuffer = await crypto.subtle.digest(supportedAlgos[algo], data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        resultEl.textContent = hashHex;
+      } catch (e) {
+        resultEl.textContent = "Hash algorithm not supported by your browser.";
+      }
+    }
+
+    window.onload = generateHash;
+  </script>
+</body>
+</html>

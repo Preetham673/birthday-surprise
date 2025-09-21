@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Railway Information System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('train-background.avif') no-repeat center center fixed;
+      background-size: cover;
+      padding: 40px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .content-wrapper {
+      background: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 1000px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: #ffdd57;
+      margin-bottom: 20px;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 90%;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    a {
+      color: #00c3ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+      border: 2px solid #fff;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content-wrapper">
+    <h1>Indian Railway Information System</h1>
+
+    <!-- Railway banner image -->
+    <img src="railway-logo.jpg" alt="Railway Banner">
+
+    <!-- Train Info Table -->
+    <table>
+      <tr>
+        <th>Train No.</th>
+        <th>Train Name</th>
+        <th>Arrival Time</th>
+        <th>Departure Time</th>
+        <th>Details</th>
+      </tr>
+      <tr>
+        <td>12001</td>
+        <td>Shatabdi Express</td>
+        <td>06:00 AM</td>
+        <td>06:05 AM</td>
+        <td><a href="https://enquiry.indianrail.gov.in/" target="_blank">View Schedule</a></td>
+      </tr>
+      <tr>
+        <td>12951</td>
+        <td>Rajdhani Express</td>
+        <td>07:15 AM</td>
+        <td>07:20 AM</td>
+        <td><a href="https://etrain.info/" target="_blank">Live Status</a></td>
+      </tr>
+      <tr>
+        <td>12627</td>
+        <td>Karnataka Express</td>
+        <td>08:30 AM</td>
+        <td>08:35 AM</td>
+        <td><a href="https://www.indianrail.gov.in/enquiry" target="_blank">Enquiry</a></td>
+      </tr>
+    </table>
+
+    <!-- Food Menu Link -->
+    <p>
+      <a href="foodmenu.html" target="_blank">🍴 View Onboard Food Menu</a>
+    </p>
+
+    <p>For more train information, visit the 
+      <a href="https://www.irctc.co.in/nget/train-search" target="_blank">IRCTC Website</a>.
+    </p>
+  </div>
+
+</body>
+</html>
