@@ -1,6 +1,0 @@
-netstat -ano | findstr :5251
-TCP    127.0.0.1:5251    ...    LISTENING    1234
-taskkill /PID 1234 /F
-cd C:\Users\preet\HashGenerator
-dotnet run
-http://localhost:5251
