@@ -1,0 +1,73 @@
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Use your own image or one of the above */
+    background-image: url('https://<your-image-URL-goes-here>');  
+    /* Or you could use one from above (if hosted somewhere) */
+    /* e.g. background-image: url('https://example.com/path/to/nature-waterfall.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    color: #333; /* default text color; tweak depending on background */
+  }
+
+  header {
+    background: rgba(0, 0, 0, 0.6); /* slightly less dark so background shows through */
+    color: #fff;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 3px solid #4CAF50; /* a green accent line */
+  }
+
+  .intro {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 25px;
+    border: 2px solid #4CAF50;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  #highlight {
+    color: darkgreen;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #ddd;
+  }
+
+  a {
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    color: #AED581;
+    text-decoration: underline;
+  }
+
+  .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  .btn:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+  }
+</style>

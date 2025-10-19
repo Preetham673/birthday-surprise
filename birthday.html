@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday 🎉</title>
+<style>
+  :root {
+    --bg: linear-gradient(180deg,#0f1724 0%, #071025 60%, #041220 100%);
+    --accent: #ffca28;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
+  body{
+    background: var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    color:#fff;
+  }
+
+  .card{
+    width:min(920px,96vw);
+    height:min(600px,86vh);
+    position:relative;
+    border-radius:18px;
+    box-shadow:0 20px 60px rgba(2,6,23,.6);
+    overflow:hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    padding:36px;
+    display:grid;
+    grid-template-rows: 1fr auto;
+  }
+
+  h1{
+    margin:0;
+    font-size:clamp(36px,6vw,84px);
+    letter-spacing:1px;
+    text-align:center;
+    font-weight:800;
+    position:relative;
+    z-index:5;
+    color:transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+    background: linear-gradient(90deg,#fff 0%, #ffd54f 40%, #ff80ab 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: popText 1s cubic-bezier(.2,.9,.3,1) both;
+  }
+
+  @keyframes popText{
+    0%{transform:translateY(18px) scale(.95); opacity:0}
+    60%{transform:translateY(-6px) scale(1.02); opacity:1}
+    100%{transform:translateY(0) scale(1)}
+  }
+
+  .subtitle{
+    text-align:center;
+    margin-top:8px;
+    font-size:18px;
+    color:rgba(255,255,255,0.75);
+    z-index:5;
+  }
+
+  /* Balloons */
+  .balloon {
+    position:absolute;
+    bottom:-120px;
+    width:110px;
+    height:140px;
+    border-radius:60% 60% 55% 55%;
+    transform-origin:center bottom;
+    box-shadow:inset -6px -10px 18px rgba(0,0,0,.25), 0 10px 28px rgba(2,6,23,.5);
+    animation: floatUp linear infinite;
+    z-index:3;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .balloon::after{
+    content:'';
+    width:2px;height:80px;background:rgba(255,255,255,0.08);
+    position:absolute;bottom:-78px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:2px;
+    box-shadow:0 2px 6px rgba(0,0,0,.4);
+  }
+  @keyframes floatUp{
+    0%{transform:translateY(0) rotate(-4deg)}
+    50%{transform:translateY(-30vh) rotate(4deg)}
+    100%{transform:translateY(-60vh) rotate(-3deg)}
+  }
+
+  /* confetti canvas covers whole card */
+  canvas#confetti {
+    position:absolute;
+    inset:0;
+    z-index:4;
+    pointer-events:none;
+  }
+
+  /* footer button */
+  .controls{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    align-items:center;
+    padding-top:12px;
+    z-index:6;
+  }
+  .btn{
+    background:linear-gradient(180deg,#ffffff10,#ffffff06);
+    border:1px solid rgba(255,255,255,0.06);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    backdrop-filter: blur(6px);
+  }
+  .small{
+    font-size:13px;color:rgba(255,255,255,0.8)
+  }
+
+  /* responsive tweaks */
+  @media (max-width:640px){
+    .card{padding:18px}
+    .balloon{width:84px;height:110px}
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px">
+    <h1 id="title">Happy Birthday 🎂</h1>
+    <div class="subtitle" id="subtitle">Wishing you an amazing day full of joy!</div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <div class="controls" style="grid-row:2">
+    <button class="btn" id="surprise">Surprise!</button>
+    <div class="small">Click anywhere to pop more confetti</div>
+  </div>
+</div>
+
+<script>
+/* ---------- balloons (pure DOM) ---------- */
+const card = document.getElementById('card');
+
+const balloonColors = [
+  'linear-gradient(180deg,#ff8a80,#ff5252)',
+  'linear-gradient(180deg,#ffd180,#ffb74d)',
+  'linear-gradient(180deg,#b388ff,#7c4dff)',
+  'linear-gradient(180deg,#80d8ff,#40c4ff)',
+  'linear-gradient(180deg,#a5d6a7,#66bb6a)'
+];
+
+function makeBalloon(leftPercent, delay, scale=1){
+  const b = document.createElement('div');
+  b.className = 'balloon';
+  b.style.left = leftPercent + '%';
+  b.style.background = balloonColors[Math.floor(Math.random()*balloonColors.length)];
+  b.style.animationDuration = (8 + Math.random()*6) + 's';
+  b.style.animationDelay = delay + 's';
+  b.style.transform = `translateX(${(Math.random()-0.5)*6}%) scale(${scale})`;
+  card.appendChild(b);
+  // remove after animation (cleanup)
+  setTimeout(()=> b.remove(), 20000);
+  return b;
+}
+
+// seed some balloons
+for(let i=0;i<6;i++){
+  makeBalloon(6 + i*15 + Math.random()*8, Math.random()*2, 0.85 + Math.random()*0.5);
+}
+
+/* ---------- confetti (canvas) ---------- */
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+let W = canvas.width = card.clientWidth;
+let H = canvas.height = card.clientHeight;
+let confetti = [];
+
+window.addEventListener('resize', ()=> {
+  W = canvas.width = card.clientWidth;
+  H = canvas.height = card.clientHeight;
+});
+
+function rand(min,max){ return Math.random()*(max-min)+min; }
+const palette = ['#ff3d00','#ffd600','#00e676','#2979ff','#d500f9','#ff80ab'];
+
+class Piece {
+  constructor(x,y){
+    this.x = x; this.y = y;
+    this.w = rand(6,12); this.h = rand(8,18);
+    this.vx = rand(-1.8,1.8);
+    this.vy = rand(1.5,3.5);
+    this.rot = rand(0,Math.PI*2);
+    this.spin = rand(-0.15,0.15);
+    this.color = palette[Math.floor(Math.random()*palette.length)];
+    this.tilt = rand(-0.5,0.5);
+    this.life = 0;
+    this.ttl = rand(70,140);
+  }
+  update(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy += 0.03; // gravity slow
+    this.rot += this.spin;
+    this.tilt += Math.sin(this.life/6)*0.02;
+    this.life++;
+  }
+  draw(ctx){
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.rotate(this.rot);
+    ctx.fillStyle = this.color;
+    ctx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
+    ctx.restore();
+  }
+}
+
+function spawnBurst(cx, cy, count=36){
+  for(let i=0;i<count;i++){
+    const p = new Piece(cx + rand(-10,10), cy + rand(-10,10));
+    const angle = rand(0,Math.PI*2);
+    const speed = rand(2,6);
+    p.vx = Math.cos(angle)*speed;
+    p.vy = Math.sin(angle)*speed * 0.6;
+    confetti.push(p);
+  }
+}
+
+// animation loop
+let last = performance.now();
+function loop(now){
+  const dt = Math.min(60, now - last)/1000;
+  last = now;
+  ctx.clearRect(0,0,W,H);
+  for(let i = confetti.length -1; i>=0; i--){
+    const p = confetti[i];
+    p.update(dt);
+    p.draw(ctx);
+    if(p.y > H + 40 || p.life > p.ttl) confetti.splice(i,1);
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// interactions
+canvas.addEventListener('click', (e)=> {
+  const r = canvas.getBoundingClientRect();
+  spawnBurst(e.clientX - r.left, e.clientY - r.top, 28);
+});
+card.addEventListener('click', (e)=> {
+  // create a few balloons occasionally
+  if(Math.random() < 0.45) makeBalloon(rand(10,90), 0, 0.9+Math.random()*0.6);
+});
+
+// surprise button
+document.getElementById('surprise').addEventListener('click', (e)=>{
+  e.stopPropagation();
+  // big confetti burst center
+  spawnBurst(W/2, H/2, 160);
+  // animate title pop and change text quickly
+  const title = document.getElementById('title');
+  title.style.transform = 'scale(1.06)';
+  setTimeout(()=> title.style.transform = '', 500);
+});
+
+/* optional: autoplay small bursts every few seconds */
+setInterval(()=> {
+  // random small bursts near top third
+  spawnBurst(rand(W*0.2, W*0.8), rand(H*0.2, H*0.45), Math.floor(rand(10,28)));
+  if(Math.random() < 0.3) makeBalloon(rand(8,92), 0, 0.85+Math.random()*0.5);
+}, 2400);
+
+/* allow customizing the name by query param: ?name=Alice */
+(function personalize(){
+  const p = new URLSearchParams(location.search);
+  const name = p.get('name');
+  if(name){
+    document.getElementById('title').textContent = `Happy Birthday, ${decodeURIComponent(name)}! 🎉`;
+    document.getElementById('subtitle').textContent = 'Have a magical day — coded with ❤️';
+  }
+})();
+</script>
+</body>
+</html>

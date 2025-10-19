@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity Sheet 11(a) - Electron</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        padding: 20px;
+    }
+    h1, h2 {
+        text-align: center;
+        color: #1a73e8;
+    }
+    .section {
+        background: #fff;
+        padding: 15px 20px;
+        margin: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    ul {
+        padding-left: 20px;
+    }
+    code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 4px;
+        display: block;
+        margin: 5px 0;
+    }
+</style>
+</head>
+<body>
+
+<h1>Activity Sheet 11(a)</h1>
+<h2>Setting Up an Electron Project</h2>
+
+<div class="section">
+    <strong>Objective:</strong>
+    <p>To install and configure a basic Electron project for desktop UI development.</p>
+</div>
+
+<div class="section">
+    <strong>Tools Required:</strong>
+    <ul>
+        <li>Node.js</li>
+        <li>npm</li>
+        <li>Electron</li>
+        <li>Terminal / Command Prompt</li>
+    </ul>
+</div>
+
+<div class="section">
+    <strong>Procedure:</strong>
+    <ul>
+        <li>Install Node.js and Electron using npm.</li>
+        <li>Run <code>npm init</code> in project directory.</li>
+        <li>Install Electron locally with <code>npm install electron --save-dev</code>.</li>
+        <li>Create <code>index.html</code> and <code>main.js</code> files.</li>
+        <li>Configure <code>package.json</code> and run with <code>npm start</code>.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <strong>Program (main.js):</strong>
+    <code>
+const { app, BrowserWindow } = require('electron');<br>
+function createWindow() {<br>
+&nbsp;&nbsp;const win = new BrowserWindow({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width: 800,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height: 600<br>
+&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;win.loadFile('index.html');<br>
+}<br>
+app.whenReady().then(createWindow);<br>
+    </code>
+
+    <strong>index.html:</strong>
+    <code>
+<!DOCTYPE html><br>
+<html lang="en"><br>
+<head><br>
+&nbsp;&nbsp;<meta charset="UTF-8"><br>
+&nbsp;&nbsp;<title>Electron App</title><br>
+</head><br>
+<body><br>
+&nbsp;&nbsp;<h1>Welcome to Electron!</h1><br>
+</body><br>
+</html>
+    </code>
+</div>
+
+<div class="section">
+    <strong>Output:</strong>
+    <p>After running <code>npm start</code>, a desktop window opens displaying:</p>
+    <p style="text-align:center; font-weight:bold; font-size:18px;">Welcome to Electron!</p>
+</div>
+
+</body>
+</html>

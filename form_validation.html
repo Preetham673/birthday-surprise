@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 95%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="myForm" onsubmit="return validateForm()">
+    <h2>User Registration</h2>
+    
+    <label>Email:</label><br>
+    <input type="text" id="email">
+    <p class="error" id="emailError"></p>
+
+    <label>Password:</label><br>
+    <input type="password" id="password">
+    <p class="error" id="passwordError"></p>
+
+    <label>Zip Code:</label><br>
+    <input type="text" id="zip">
+    <p class="error" id="zipError"></p>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      let zip = document.getElementById("zip").value;
+      
+      let emailError = document.getElementById("emailError");
+      let passwordError = document.getElementById("passwordError");
+      let zipError = document.getElementById("zipError");
+      
+      // Clear previous errors
+      emailError.innerHTML = "";
+      passwordError.innerHTML = "";
+      zipError.innerHTML = "";
+      
+      let valid = true;
+
+      // Email validation
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        emailError.innerHTML = "Invalid email format.";
+        valid = false;
+      }
+
+      // Password validation
+      if (password.length < 6) {
+        passwordError.innerHTML = "Password must be at least 6 characters.";
+        valid = false;
+      }
+
+      // Zip code validation (5 digits only)
+      let zipPattern = /^[0-9]{5}$/;
+      if (!zip.match(zipPattern)) {
+        zipError.innerHTML = "Zip Code must be 5 digits.";
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+
+</body>
+</html>

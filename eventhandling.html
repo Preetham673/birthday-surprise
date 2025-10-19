@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Event Handling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+    button, input, textarea {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #box {
+      width: 200px;
+      height: 100px;
+      margin: 20px auto;
+      background-color: lightblue;
+      line-height: 100px;
+      color: #333;
+      border: 2px solid #555;
+      transition: 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <h2>JavaScript Event Handling Demo</h2>
+
+  <!-- onclick -->
+  <button onclick="showMessage()">Click Me</button>
+
+  <!-- onmouseover & onmouseout -->
+  <div id="box" onmouseover="hoverEffect()" onmouseout="normalEffect()">
+    Hover over me
+  </div>
+
+  <!-- onmousedown & onmouseup -->
+  <button onmousedown="pressDown()" onmouseup="releaseUp()">Press Me</button>
+
+  <!-- onchange -->
+  <br>
+  <input type="text" id="nameInput" placeholder="Type your name" onchange="nameChanged()">
+
+  <p id="output"></p>
+
+  <script>
+    function showMessage() {
+      document.getElementById("output").innerHTML = "Button Clicked!";
+    }
+    function hoverEffect() {
+      document.getElementById("box").style.backgroundColor = "lightgreen";
+      document.getElementById("box").innerHTML = "Mouse Over!";
+    }
+    function normalEffect() {
+      document.getElementById("box").style.backgroundColor = "lightblue";
+      document.getElementById("box").innerHTML = "Hover over me";
+    }
+    function pressDown() {
+      document.getElementById("output").innerHTML = "Mouse Button Pressed!";
+    }
+    function releaseUp() {
+      document.getElementById("output").innerHTML = "Mouse Button Released!";
+    }
+    function nameChanged() {
+      let name = document.getElementById("nameInput").value;
+      document.getElementById("output").innerHTML = "Hello, " + name + "!";
+    }
+  </script>
+</body>
+</html>

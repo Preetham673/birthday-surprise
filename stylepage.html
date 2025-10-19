@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful CSS Web Page</title>
+  <link rel="stylesheet" href="sty.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1755366282248-ebe47a7b33b4?auto=format&fit=crop&w=1170&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      font-size: 28px;
+      border-bottom: 3px solid #4CAF50;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      color: darkgreen;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 15px 0;
+    }
+
+    a {
+      color: #2E7D32;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #AED581;
+      text-decoration: underline;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: #388E3C;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: rgba(0,0,0,0.8);
+      color: #eee;
+      padding: 15px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    #highlight {
+      font-weight: bold;
+      color: darkblue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    My Beautiful CSS Web Page
+  </header>
+
+  <!-- First Card Section -->
+  <div class="card">
+    <h2>Introduction to CSS</h2>
+    <p id="highlight">Learning CSS is fun!</p>
+    <p>CSS (Cascading Style Sheets) is used to style HTML content. You can change colors, fonts, spacing, and much more.</p>
+    <p>Want to learn more? Visit <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN CSS Docs</a>.</p>
+  </div>
+
+  <!-- Second Card Section -->
+  <div class="card">
+    <h2>Styling Links and Buttons</h2>
+    <p>Links can have different colors and hover effects using CSS. Buttons can also be styled with colors, padding, and hover transformations.</p>
+    <button class="btn">Click Me</button>
+  </div>
+
+  <!-- Third Card Section -->
+  <div class="card">
+    <h2>Using Background Images</h2>
+    <p>You can set beautiful background images for your page and use semi-transparent overlays to make text readable.</p>
+    <p>Try different images to see how your page transforms!</p>
+  </div>
+
+  <footer>
+    &copy; 2025 My CSS Demo Page
+  </footer>
+</body>
+</html>
